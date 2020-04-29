@@ -75,7 +75,6 @@ GPA_Issue_Plot <- Top_10 %>%
 
 ```
 
-
 ### Make Weighted GPA varaible (WA_GPA)
 ```{r}
 GPA_Data <- Top_10 %>%
@@ -83,6 +82,70 @@ GPA_Data <- Top_10 %>%
                      (S1_Credits + S2_Credits)))
 GPA_Data
 ```
+
+### Load in Survey Data
+```{r}
+JP_Survey <- read_csv("Job Prep Survey Results.csv", skip = 3)
+```
+
+### Load in function to Reverse Score
+```{r}
+Likert_Total <- function(x,y,z){
+  Reversed <- abs(x[,c(z)]-y)
+  Non_Reversed_Columns <- x[,-z]
+  Properly_Scored_Data_Frame <- cbind(Non_Reversed_Columns,Reversed)
+  CC <- rowSums(Properly_Scored_Data_Frame)
+  Total_Data_Frame <- cbind(Properly_Scored_Data_Frame,CC)
+  write.csv("Total_Data_Frame", file = "Total Data Frame.csv", row.names = FALSE)
+  return(Total_Data_Frame)
+}
+```
+
+### Reverse Score with Survey Data
+#### This is a little cumbersome, I added 1 to each column # to make it work with
+#### the function and the ID number
+```{r}
+CTR <- c(5,10,13,14)
+JP_Survey2 <- Likert_Total(JP_Survey, 7, CTR)
+JP_Survey2
+```
+
+#### Clean up to remove ID number from the calculated total
+```{r}
+JP_Survey3 <- JP_Survey2 %>%
+  mutate(Optimism_Score = CC - ID)
+JP_Survey3
+
+
+
+```
+
+
+
+
+#### What's Next
+```{r}
+col_names = c("ID", "School", "Age", "Gender", "Discipline"),
+                    JP_Demo$ID <- parse_integer(JP_Demo$ID))
+
+
+
+CTR <- c(3,5,7)
+Howard_Data <- Likert_Total(HD, 8, CTR)
+Howard_Data
+
+
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
