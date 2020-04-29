@@ -7,3 +7,31 @@ version: "version 1.0"
 ---
 
 This is for the final exam project in EDRM 718.
+
+### First we will load the package
+```{r include=FALSE}
+library(tidyverse)
+
+```
+
+### Load and Tidy the Demographics File
+```{r}
+JP_Demo <- read_csv("Job Prep Demographics.csv", skip = 6,
+                    col_names = c("ID", "School", "Age", "Gender", "Discipline"),
+                    JP_Demo$ID <- parse_integer(JP_Demo$ID))
+                    
+```
+
+### Tidy and rename JP_Demo to Demographics File
+```{r}
+Demographics <- JP_Demo %>%
+  fill("Discipline") %>%
+  filter(ID >0)
+
+```
+
+
+#### What's Next
+```{r}
+
+

@@ -13,3 +13,9 @@
 .Rproj.user/shared/notebooks/paths
 
 .Rproj.user/shared/notebooks/
+
+*.pper
+
+.Rproj.user/E7CDE54D/
+
+Assignment 10.Rmd
