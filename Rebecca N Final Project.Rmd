@@ -50,12 +50,32 @@ JP_Data <- read_csv("Job Prep GPA Data.csv", skip = 5,
 
 ### Identify 10% largest residual
 ```{r}
-GPA_Data <- JP_Data %>%
-  mutate(GPA_Residual = S2 GPA - `S1 GPA`)
+Top_10 <- JP_Data %>%
+  mutate(GPA_Residual = ((S2_GPA - S1_GPA)^2)^(1/2)) %>%
+  arrange(desc(GPA_Residual)) %>%
+  mutate(Top_10_Residual = cut(GPA_Residual,
+                              breaks = c(0,.70,1.36),
+                             labels = c("Cool to Use", "Top 10% Residual"))) %>%
+  mutate()
+Top_10
+
 ```
 
 
-#### What's Next
+### Chart showing difference 10% Highest Residuals
 ```{r}
+GPA_Issue_Plot <- Top_10 %>%
+  ggplot(aes(x = ID, y = GPA_Residual, color = Top_10_Residual)) +
+  geom_point()+
+  labs(x = "Student ID Number",
+       y = "Difference Between GPA First Semester and Second Semester",
+       title = "Top 10% Highest Differences in GPA", 
+       subtitle = "Residual Difference in GPA")
+  GPA_Issue_Plot
+
+```
+
+
+
 
 
