@@ -129,6 +129,31 @@ JP_Survey4
 ```
 
 
+### Evaluate if the mean of the Optimism scores by discipline is different
+```{r}
+Difference_Check <- JP_Survey4 %>%
+  group_by(Discipline) %>%
+  summarize(count = n(),
+            Mean_OS = mean(Optimism_Score, na.rm = TRUE))
+
+
+```
+
+
+### Conduct ANOVA test to check for differences in the means
+```{r}
+JP_Survey4 %>%
+  aov(Optimism_Score ~ Discipline)
+  
+  
+  
+  
+  
+```
+
+
+
+
 #### What's Next
 ```{r}
 col_names = c("ID", "School", "Age", "Gender", "Discipline"),
