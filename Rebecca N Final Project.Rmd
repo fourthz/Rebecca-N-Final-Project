@@ -151,6 +151,17 @@ JP_Survey4 %>%
   
 ```
 
+###Make one table for further analysis
+```{r}
+RWS_Data <- JP_Survey4 %>%
+  left_join(GPA_Data, by = "ID")
+RWS_Data
+```
+
+
+
+
+
 
 
 
