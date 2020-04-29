@@ -186,7 +186,26 @@ RWS_RQ2
 #### Applied Sciences.  Interestingly, it shows that as GPA goes up the Optimism
 #### Score goes down.
 
+### RQ3 is the optmism level different by discipline
+```{r}
+RWS_RQ3 <- aov(RWS_Data$Optimism_Score ~ RWS_Data$Discipline)
+summary(RWS_RQ3)
 
+RWS_RQ3_Plot <- RWS_Data %>%
+  ggplot(aes(x = ID, y = Optimism_Score, color = Discipline)) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  labs(x = "Student ID Number",
+       y = "Optimism Score",
+       title = "Optimism Variation by Discipline") 
+RWS_RQ3_Plot
+
+```
+#### Yes, the optimism level by discipline is significantly different.
+#### Interestingly the  patterns of optimism by discipline did not differ
+#### much from when considered with GPA.  Formal Sciences and Applied Sciences 
+#### have the highest optimism scores and Humanities is consistently the
+#### lowest.
 
 
 #### What's Next
