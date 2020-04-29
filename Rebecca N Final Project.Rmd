@@ -12,6 +12,7 @@ This is for the final exam project in EDRM 718.
 ```{r include=FALSE}
 library(tidyverse)
 
+
 ```
 
 ### Load the JP Demographics File
@@ -142,14 +143,13 @@ Difference_Check <- JP_Survey4 %>%
 
 ### Conduct ANOVA test to check for differences in the means
 ```{r}
-JP_Survey4 %>%
-  aov(Optimism_Score ~ Discipline)
-  
-  
-  
-  
+Difference_Check2 <- aov(RWS_Data$Optimism_Score ~ RWS_Data$Discipline)
+summary(Difference_Check2)
   
 ```
+#### From the Anova test, we know that at least one discipline has a different
+#### mean
+
 
 ###Make one table for further analysis
 ```{r}
@@ -161,10 +161,11 @@ RWS_Data
 
 ### RWS RQ1 - Is GPA related to degree of optimism
 #### We can check this with correlation
-#### When I come back to this one add filter
 ```{r}
-cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
-
+RWS_RQ1 <- RWS_Data %>%
+  filter(Top_10_Residual == "Cool to Use") %>%
+  cor(WA_GPA, Optimism_Score)
+ RWS_RQ1
 
 ```
 
