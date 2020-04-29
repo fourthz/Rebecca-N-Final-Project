@@ -14,7 +14,7 @@ library(tidyverse)
 
 ```
 
-### Load and Tidy the Demographics File
+### Load the JP Demographics File
 ```{r}
 JP_Demo <- read_csv("Job Prep Demographics.csv", skip = 6,
                     col_names = c("ID", "School", "Age", "Gender", "Discipline"),
@@ -29,6 +29,16 @@ Demographics <- JP_Demo %>%
   filter(ID >0)
 
 ```
+
+### Double check that no ID numbers are repeated
+```{r}
+check_Demographics <- Demographics %>%
+  count(ID) %>%
+  filter(n >1)
+
+```
+#### Based on this check, we are certain that no ID numbers are repeated
+
 
 
 #### What's Next
