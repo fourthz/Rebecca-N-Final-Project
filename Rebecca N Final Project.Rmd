@@ -41,10 +41,18 @@ check_Demographics <- Demographics %>%
 
 ### Load Job Prep Data
 ```{r}
-JP_Data <- read_csv("Job Prep GPA Data.csv", skip = 4)
+JP_Data <- read_csv("Job Prep GPA Data.csv", skip = 5,
+                    col_names = c("ID", "School", "Age", "Gender", "S1_Credits", "S1_GPA",
+                                  "S2_Credits", "S2_GPA"),col_types = cols(S1_GPA = col_double()))
                     
 ```
-#### Data are in good format 
+
+
+### Identify 10% largest residual
+```{r}
+GPA_Data <- JP_Data %>%
+  mutate(GPA_Residual = S2 GPA - `S1 GPA`)
+```
 
 
 #### What's Next
