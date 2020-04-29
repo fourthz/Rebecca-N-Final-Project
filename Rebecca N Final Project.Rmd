@@ -121,6 +121,12 @@ JP_Survey3
 ```
 
 
+#### Add discipline to JP_Survey
+```{r}
+JP_Survey4 <- JP_Survey3 %>%
+  left_join(Demographics, by = "ID")
+JP_Survey4
+```
 
 
 #### What's Next
@@ -128,11 +134,9 @@ JP_Survey3
 col_names = c("ID", "School", "Age", "Gender", "Discipline"),
                     JP_Demo$ID <- parse_integer(JP_Demo$ID))
 
+health2 <- health %>%
+  left_join(cities, by = "city.code")
 
-
-CTR <- c(3,5,7)
-Howard_Data <- Likert_Total(HD, 8, CTR)
-Howard_Data
 
 
 
