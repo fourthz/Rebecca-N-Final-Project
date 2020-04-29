@@ -1,0 +1,131 @@
+---
+title: "Rebecca N Checkpoint E"
+output: html_notebook
+author: "Rebecca Neal"
+date: " 23 April 2020"
+version: "version 1.0"
+---
+
+This is Checkpoint E for EDRM 718
+
+### Q1 What is the name of the package that must be installed for all things in the tidyverse
+#### Answer: tidyverse - going to load it while we are here
+```{r include=FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+### Q2 Import Small Cities Health Data into a tibble named "health"
+```{r}
+health <- read_csv("Small Cities Health Data.csv")
+health
+```
+
+### Q3 - Convert the helath tibble to a data frame and back to a tibble
+```{r}
+health <- as_data_frame(health)
+health <- as_tibble(health)
+```
+
+### Q4 Create scatterplot to show relationship of # of physicians to # hospital beds
+```{r}
+health %>%
+  ggplot(aes(x = hosp.beds, y = doctors)) +
+  geom_point()
+
+```
+
+### Q5 - Construct same plot but only use cities with less than 1000 hospital beds
+```{r}
+health_plot <- health %>%
+  filter(hosp.beds < 1000) %>%
+  ggplot(aes(x = hosp.beds, y = doctors)) +
+  geom_point()
+health_plot
+```
+
+### Q6 - Add a regression line for Q5
+```{r}
+health_plot <- health %>%
+  filter(hosp.beds < 1000) %>%
+  ggplot(aes(x = hosp.beds, y = doctors)) +
+  geom_point()+
+  stat_smooth(method = "lm")
+health_plot
+```
+
+### Q7 - Add population density from the Small Cities Densities to the health tibble
+#### First, we need to load in the Small Cities data make sure there are no duplicates
+```{r}
+cities <- read_csv("Small Cities Densities.csv")
+
+check_cities <- cities %>%
+  filter (n > 1)
+
+cities
+
+```
+
+#### Now we can add the variable
+```{r}
+health2 <- health %>%
+  left_join(cities, by = "city.code")
+
+```
+
+### Q8 - Add a categorical variable for Low Medium and High density
+```{r}
+health3 <- health2%>%
+  mutate(cat.density = cut(density,
+                           breaks = c(0, 80, 120, 300),
+                           labels = c("Low", "Medium", "High")))
+```
+
+### Q9 Construct a scatterplot but add regression lines for each category of density
+```{r}
+health_plot2 <- health3 %>%
+  filter(hosp.beds < 1000) %>%
+  ggplot(aes(x = hosp.beds, y = doctors, color = cat.density)) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE)
+health_plot2
+```
+
+### Q10 Do the same thing we did in Q9 but add labels
+```{r}
+health_plot2 <- health3 %>%
+  filter(hosp.beds < 1000) %>%
+  ggplot(aes(x = hosp.beds, y = doctors, color = cat.density)) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  labs(x = "Number of Hospital Beds",
+       y = "Number of Doctors",
+       title = "Relationship of Doctors to Hospital Beds", 
+       subtitle = "Regression Lines for Low, Medium, and High Density Cities")
+health_plot2
+```
+
+### Q11 - Read the Patient Data and remove the word patients
+```{r}
+patients <- read_csv("Patient Data.csv")
+```
+
+patients$patient <- as_factor(patients$patient)
+
+#### trying fresh
+```{r}
+
+patients2 <- patients %>%
+  transmute(ID = str_replace_all(patient, "Patient", ""))
+```
+
+
+### Q12 - Tidy the Patient Data
+```{r}
+patients %>%
+  gather(reading.1, reading.2, reading.3, key = "Round", value = "Reading")
+```
+
+
+
+

@@ -1,0 +1,9 @@
+---
+title: "Rebecca N Final Project"
+output: html_notebook
+author: "Rebecca Neal"
+date: " 29 April 2020"
+version: "version 1.0"
+---
+
+This is for the final exam project in EDRM 718.
