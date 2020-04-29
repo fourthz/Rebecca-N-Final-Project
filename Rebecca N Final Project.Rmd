@@ -182,7 +182,9 @@ RWS_RQ2 <- RWS_Data %>%
 RWS_RQ2
   
 ```
-
+#### All of the disciplines show very little relationship at all; except
+#### Applied Sciences.  Interestingly, it shows that as GPA goes up the Optimism
+#### Score goes down.
 
 
 
