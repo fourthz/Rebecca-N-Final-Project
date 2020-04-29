@@ -55,11 +55,11 @@ Top_10 <- JP_Data %>%
   arrange(desc(GPA_Residual)) %>%
   mutate(Top_10_Residual = cut(GPA_Residual,
                               breaks = c(0,.70,1.36),
-                             labels = c("Cool to Use", "Top 10% Residual"))) %>%
-  mutate()
+                             labels = c("Cool to Use", "Top 10% Residual")))
+         
 Top_10
-
 ```
+
 
 
 ### Chart showing difference 10% Highest Residuals
@@ -76,6 +76,13 @@ GPA_Issue_Plot <- Top_10 %>%
 ```
 
 
+### Make Weighted GPA varaible (WA_GPA)
+```{r}
+GPA_Data <- Top_10 %>%
+  mutate(WA_GPA = (((S1_GPA * S1_Credits) + (S2_GPA * S2_Credits)) / 
+                     (S1_Credits + S2_Credits)))
+GPA_Data
+```
 
 
 
