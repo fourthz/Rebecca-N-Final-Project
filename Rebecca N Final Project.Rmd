@@ -159,7 +159,29 @@ RWS_Data
 ```
 
 
+### RWS RQ1 - Is GPA related to degree of optimism
+#### We can check this with correlation
+#### When I come back to this one add filter
+```{r}
+cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
 
+
+```
+
+### RWS RQ2 - Is relationship of GPA and optimism consistent or different
+### across disciplines
+```{r}
+RWS_RQ2 <- RWS_Data %>%
+  filter(Top_10_Residual == "Cool to Use") %>%
+  ggplot(aes(x = WA_GPA, y = Optimism_Score, color = Discipline)) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  labs(x = "Senior Weighted Average GPA",
+       y = "Optimism Score",
+       title = "Relationship of Weighted Average GPA and Optimism Score by Discipline") 
+RWS_RQ2
+  
+```
 
 
 
@@ -170,11 +192,12 @@ RWS_Data
 col_names = c("ID", "School", "Age", "Gender", "Discipline"),
                     JP_Demo$ID <- parse_integer(JP_Demo$ID))
 
-health2 <- health %>%
-  left_join(cities, by = "city.code")
+hRegression <- lm(National_Data$`Number of Certified Applications`~ 
+                 National_Data$`unemployment rate`)
+summary(Regression)
 
 
-
+health_plot2
 
 ```
 
