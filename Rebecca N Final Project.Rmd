@@ -168,24 +168,27 @@ RWS_Data
 ### RWS RQ1 - Is GPA related to degree of optimism
 #### We can check this with correlation
 ```{r}
+
+RWS_RQ1 <- cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
+RWS_RQ1      
+
+RWS_Data$WA_GPA <-as_factor(RWS_Data$WA_GPA)
+RWS_Data$Optimism_Score <- as_factor(RWS_Data$Optimism_Score)
+
+RWS_RQ1 <- cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
+RWS_RQ1                              
+                              
+   
+```
+
 RWS_RQ1 <- cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
 RWS_RQ1
 
-cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
-
-RWS_RQ1 <- RWS_Data %>%
-  filter(Top_10_Residual == "Cool to Use") %>%
-  ggplot(aes(x = WA_GPA, y = Optimism_Score) +
-  geom_point() +
-  stat_smooth(method = "lm", se = FALSE) +
-  labs(x = "Senior Weighted Average GPA",
-       y = "Optimism Score",
-       title = "Relationship of Weighted Average GPA and Optimism Score")
-RWS_RQ1
-
-```
 
 #### Team Leader Mike - I can't seem to get correlation to work.
+#### From the research cafe, I tried expressing them as factors not a datafram.
+#### Then I remembered some of the last material we learned and tried converting
+#### to factors.  I still have nothing.
 #### I tried everything I could think of was hoping to at least give you 
 #### a graph of the regression line.  Hopefully one of my colleagues can provide
 #### the answer.  I can not wait to understand what I am doing wrong.
