@@ -18,18 +18,21 @@ library(tidyverse)
 ### Load the JP Demographics File
 ```{r}
 JP_Demo <- read_csv("Job Prep Demographics.csv", skip = 6,
-                    col_names = c("ID", "School", "Age", "Gender", "Discipline"),
-                    JP_Demo$ID <- parse_integer(JP_Demo$ID))
+                    col_names = c("ID", "School", "Age", "Gender", "Discipline"))
+ JP_Demo$ID <- parse_integer(JP_Demo$ID)                   
                     
 ```
+
 
 ### Tidy and rename JP_Demo to Demographics File
 ```{r}
 Demographics <- JP_Demo %>%
   fill("Discipline") %>%
-  filter(ID >0)
+  filter(ID >0) 
+  
 
 ```
+
 
 ### Double check that no ID numbers are repeated
 ```{r}
@@ -75,6 +78,9 @@ GPA_Issue_Plot <- Top_10 %>%
   GPA_Issue_Plot
 
 ```
+#### Mike - I am sure you will provide commentary to the client, this graph
+#### makes the residual difference very clear to see
+
 
 ### Make Weighted GPA varaible (WA_GPA)
 ```{r}
