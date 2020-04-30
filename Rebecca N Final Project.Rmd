@@ -137,7 +137,7 @@ JP_Survey4
 
 
 ### Evaluate if the mean of the Optimism scores by discipline is different
-```{r}
+```{r echo=TRUE}
 Difference_Check <- JP_Survey4 %>%
   group_by(Discipline) %>%
   summarize(count = n(),
@@ -148,8 +148,8 @@ Difference_Check <- JP_Survey4 %>%
 
 
 ### Conduct ANOVA test to check for differences in the means
-```{r}
-Difference_Check2 <- aov(RWS_Data$Optimism_Score ~ RWS_Data$Discipline)
+```{r echo=FALSE}
+Difference_Check2 <- aov(JP_Survey4$Optimism_Score ~ JP_Survey4$Discipline)
 summary(Difference_Check2)
   
 ```
@@ -168,12 +168,29 @@ RWS_Data
 ### RWS RQ1 - Is GPA related to degree of optimism
 #### We can check this with correlation
 ```{r}
+RWS_RQ1 <- cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
+RWS_RQ1
+
+cor(RWS_Data$WA_GPA, RWS_Data$Optimism_Score)
+
 RWS_RQ1 <- RWS_Data %>%
   filter(Top_10_Residual == "Cool to Use") %>%
-  cor(WA_GPA, Optimism_Score)
- RWS_RQ1
+  ggplot(aes(x = WA_GPA, y = Optimism_Score) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  labs(x = "Senior Weighted Average GPA",
+       y = "Optimism Score",
+       title = "Relationship of Weighted Average GPA and Optimism Score")
+RWS_RQ1
 
 ```
+
+#### Team Leader Mike - I can't seem to get correlation to wrork.
+#### I tried everything I could think of was hoping to at least give you 
+#### a graph of the regression line.  Hopefully one of my colleagues can provide
+#### the answer.  I can not wait to understand what I am doing wrong.
+
+
 
 ### RWS RQ2 - Is relationship of GPA and optimism consistent or different
 ### across disciplines
@@ -191,7 +208,10 @@ RWS_RQ2
 ```
 #### All of the disciplines show very little relationship at all; except
 #### Applied Sciences.  Interestingly, it shows that as GPA goes up the Optimism
-#### Score goes down.
+#### Score goes down.  My hypothesis would have been the opposite, that 
+#### students with higher GPAs would be more optimistic about their future.
+#### It is very interesting to see that in this situation, grades don't mater 
+#### that much.
 
 ### RQ3 is the optmism level different by discipline
 ```{r}
@@ -214,20 +234,6 @@ RWS_RQ3_Plot
 #### have the highest optimism scores and Humanities is consistently the
 #### lowest.
 
-
-#### What's Next
-```{r}
-col_names = c("ID", "School", "Age", "Gender", "Discipline"),
-                    JP_Demo$ID <- parse_integer(JP_Demo$ID))
-
-hRegression <- lm(National_Data$`Number of Certified Applications`~ 
-                 National_Data$`unemployment rate`)
-summary(Regression)
-
-
-health_plot2
-
-```
 
 
 
