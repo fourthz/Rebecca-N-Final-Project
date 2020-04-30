@@ -185,7 +185,7 @@ RWS_RQ1
 
 ```
 
-#### Team Leader Mike - I can't seem to get correlation to wrork.
+#### Team Leader Mike - I can't seem to get correlation to work.
 #### I tried everything I could think of was hoping to at least give you 
 #### a graph of the regression line.  Hopefully one of my colleagues can provide
 #### the answer.  I can not wait to understand what I am doing wrong.
