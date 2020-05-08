@@ -1,0 +1,54 @@
+Rebecca Neal
+
+General comments:
+
+I know that this has been a tough semester for you. I suspect it would be easy to be discouraged and just
+give up on R, but I hope that you don't do that. I believe that despite the difficulties that you have the 
+core learning in place that would allow you to practice and learn more on your own. I believe that it would
+serve you well if you take that path. It has been a pleasure having you in the course this semester.
+
+
+Total score: 34
+
+
+
+Reproducibilty: 9
+
+Correctly initiated a repo, established a .gitignore file, and tracked the project with descriptive comments. Readme file
+is sparse and not descriptive for outsiders.
+
+Neatness: 8
+
+A well-documented project with appropriate narrative. Adherence to the style guide throughout the notebook.
+Readable output, but could have used a few more section headings and provided more narrative with statistics and graphs
+for the three research questions.
+
+Functions: 5
+
+Did not create a function for identifying residuals. Function for Likert scoring incorporated into script.
+No functions file. No argument definitions. No sourcing.
+
+Data prep: 7
+
+CSV files not included, even though they had apparently been adjusted "offline." These were recreated and then read in.
+Primary key checked, but not foreign keys, so problem with GPA not found. Did not filter out inconsistent GPAs but
+instead filtered out based on GPA value. Likert scale scored correctly and summed. Files joined, but GPA turned into
+a factor thus creating problems with calculations.
+
+Graphs: 3
+
+Graphs created are labeled, but not all graphs were constructed to address research questions and those that were
+constructed are not correct.
+
+Descriptive statistics: 1
+
+Descriptive statistics are missing, though an attempt was made to calculate the correlation.
+
+Inferential statistics: 0
+
+Inferential statistics are missing.
+
+Team collaboration: 1
+
+Made pull request but made it to master instead of development branch. Notebook that was sent to the master had
+nothing in it other than my remarks.
